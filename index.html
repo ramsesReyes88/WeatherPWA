@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b1220" />
+  <meta name="description" content="PWA del clima usando Open-Meteo (gratis, sin API key)." />
+
+  <title>Clima PWA</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icons/icon-192.png">
+  <link rel="stylesheet" href="src/styles.css">
+</head>
+
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">☁️</div>
+      <div>
+        <h1>Clima PWA</h1>
+        <p class="subtitle">Open-Meteo · Instalación · Offline</p>
+      </div>
+    </div>
+
+    <button id="installBtn" class="btn btn-ghost" hidden>Instalar</button>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Buscar clima</h2>
+      <form id="searchForm" class="form">
+        <label class="label">
+          Ciudad, País
+          <input id="placeInput" class="input" type="text" placeholder="Ej. Tijuana, MX" autocomplete="off" required>
+        </label>
+        <button class="btn" type="submit">Consultar</button>
+      </form>
+
+      <div class="hint">
+        Tip: escribe “Ensenada, MX”, “Mexico City, MX”, “San Diego, US”.
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="row">
+        <h2>Resultado</h2>
+        <span id="netBadge" class="badge">—</span>
+      </div>
+
+      <div id="status" class="status">Listo.</div>
+
+      <div id="result" class="result" hidden>
+        <div class="big">
+          <div class="temp">
+            <span id="tempC">—</span><span class="unit">°C</span>
+          </div>
+          <div class="desc" id="desc">—</div>
+          <div class="place" id="place">—</div>
+        </div>
+
+        <div class="grid">
+          <div class="metric">
+            <div class="k">Viento</div>
+            <div class="v"><span id="wind">—</span> km/h</div>
+          </div>
+          <div class="metric">
+            <div class="k">Dirección</div>
+            <div class="v"><span id="windDir">—</span>°</div>
+          </div>
+          <div class="metric">
+            <div class="k">Sensación (aprox.)</div>
+            <div class="v"><span id="feels">—</span> °C</div>
+          </div>
+          <div class="metric">
+            <div class="k">Actualizado</div>
+            <div class="v" id="updatedAt">—</div>
+          </div>
+        </div>
+      </div>
+
+      <details class="offlineBox">
+        <summary>¿Qué pasa si no hay internet?</summary>
+        <p>
+          La app carga sin internet y muestra el <b>último clima guardado</b>.
+          Si nunca consultaste antes, verás un mensaje offline.
+        </p>
+      </details>
+    </section>
+
+    <footer class="footer">
+      <small>
+        Hecho como práctica de PWA · API: Open-Meteo · Repo público requerido
+      </small>
+    </footer>
+  </main>
+
+  <script src="src/app.js"></script>
+</body>
+</html>
